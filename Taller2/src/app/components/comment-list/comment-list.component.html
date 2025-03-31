@@ -1,0 +1,6 @@
+<ul class="list-group list-group-flush">
+    <li *ngFor="let comment of comments" class="list-group-item">
+      <strong>{{ comment.user.username }}:</strong> {{ comment.body }}
+    </li>
+  </ul>
+  

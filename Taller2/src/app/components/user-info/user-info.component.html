@@ -1,0 +1,12 @@
+<div class="card mt-3">
+    <div class="card-body">
+      <h4 class="card-title">{{ usuario.firstName }} {{ usuario.lastName }}</h4>
+      <p class="card-text">
+        <strong>Username:</strong> {{ usuario.username }} <br>
+        <strong>Email:</strong> {{ usuario.email }} <br>
+        <strong>Teléfono:</strong> {{ usuario.phone }}
+      </p>
+      <img [src]="usuario.image" class="img-thumbnail" width="150" />
+    </div>
+  </div>
+  

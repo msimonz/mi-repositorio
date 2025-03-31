@@ -1,24 +1,25 @@
-<div class="container mt-3">
-  <input class="form-control mb-2" [(ngModel)]="txtUser" placeholder="Buscar username">
-  <button class="btn btn-primary mb-4" (click)="searchUser()">Buscar</button>
+<div class="container mt-5">
 
-  <div *ngIf="usuario">
-    <h3>{{ usuario.firstName }} {{ usuario.lastName }}</h3>
-    <p>Email: {{ usuario.email }}</p>
-    <img [src]="usuario.image" width="100" class="rounded" />
+  <h2 class="text-center mb-4">🔍 Buscar Usuario en DummyJSON</h2>
+
+  <!-- Sección 1: Barra de búsqueda -->
+  <div class="input-group mb-4">
+    <input type="text" class="form-control" [(ngModel)]="txtUser" placeholder="Escribe el username...">
+    <button class="btn btn-primary" (click)="searchUser()">Buscar</button>
   </div>
 
-  <div *ngFor="let item of postsConComentarios" class="card mt-3">
-    <div class="card-body">
-      <h5 class="card-title">{{ item.post.title }}</h5>
-      <p class="card-text">{{ item.post.body }}</p>
-      <p>💬 Reacciones: {{ item.post.reactions }}</p>
-      <h6>Comentarios:</h6>
-      <ul>
-        <li *ngFor="let c of item.comments">
-          <strong>{{ c.user.username }}</strong>: {{ c.body }}
-        </li>
-      </ul>
-    </div>
+  <!-- Mensaje si no existe el usuario -->
+  <div *ngIf="!usuario && postsConComentarios.length === 0" class="alert alert-info">
+    Ingresa un username y presiona buscar.
   </div>
+
+  <!-- Sección 2: Datos del usuario -->
+  <app-user-info *ngIf="usuario" [usuario]="usuario"></app-user-info>
+
+  <!-- Sección 3: Posts + comentarios -->
+  <app-user-posts
+    *ngIf="usuario && postsConComentarios.length > 0"
+    [postsConComentarios]="postsConComentarios">
+  </app-user-posts>
+
 </div>
